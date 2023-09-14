@@ -7,9 +7,10 @@ document.querySelector("#limpar").addEventListener("click", function (){
 document.querySelector("#deletar").addEventListener("click", function (){
     screen.value = screen.value.substring(0,(screen.value.length -1));
 });
+const operadoresPadrao = ["*", "+", "-", "/", "."];
 
 function addToScreen(value){
-    const operadoresPadrao = ["*", "+", "-", "/", "."];
+
     screen.value += value;
 
     if(operadoresPadrao.includes(value)){
@@ -34,5 +35,9 @@ function addToScreen(value){
 }
 
 function resultado(){
-    screen.value = eval(screen.value);
+    if (operadoresPadrao.includes(screen.value[screen.value.length - 1])) {
+        screen.value = "0";
+    } else {
+        screen.value = eval(screen.value);
+    }
 }
